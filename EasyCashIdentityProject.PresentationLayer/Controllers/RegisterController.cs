@@ -13,14 +13,15 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
         {
             _userManager = userManager;
         }
-
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
-
+        [HttpPost]
         public async Task<IActionResult> Index(AppUserRegisterDto appUserRegisterDto)
         {
+
             if (ModelState.IsValid)
             {
                 AppUser appuser = new AppUser()
@@ -28,12 +29,22 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
                     UserName = appUserRegisterDto.Username,
                     Name = appUserRegisterDto.Name,
                     Surname = appUserRegisterDto.Surname,
-                    Email = appUserRegisterDto.Email
+                    Email = appUserRegisterDto.Email,
+                    City = "Baku",
+                    ImageUrl = "xxx",
+                    District = "8km"
                 };
                 var result = await _userManager.CreateAsync(appuser, appUserRegisterDto.Password);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "ConfirmMail");
+                }
+                else
+                {
+                    foreach (var item in result.Errors)
+                    {
+                        ModelState.AddModelError("", item.Description);
+                    }
                 }
 
             }
