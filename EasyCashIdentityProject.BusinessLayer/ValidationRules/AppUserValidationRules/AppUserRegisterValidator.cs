@@ -19,6 +19,7 @@ namespace EasyCashIdentityProject.BusinessLayer.ValidationRules.AppUserValidatio
             RuleFor(x => x.Email).NotEmpty().EmailAddress().WithMessage("Mail adresi daxil edin");
             RuleFor(x => x.Password).NotEmpty().MinimumLength(5).WithMessage("Minimum 5 xarakter daxil olmalidi").MaximumLength(30).WithMessage("Maksimum 30 xarakter daxil olunmalidi");
             RuleFor(x => x.ConfirmPassword).NotEmpty().Equal(y => y.Password).WithMessage("Parol Eyni Olmalidir");
+            RuleFor(x => x.Email).NotEqual(y => y.Email).WithMessage("Artiq qeydiyyatdan kecib");
         }
     }
 }

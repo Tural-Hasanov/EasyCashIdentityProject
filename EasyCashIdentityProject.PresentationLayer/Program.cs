@@ -1,12 +1,14 @@
 ﻿using EasyCashIdentityProject.DataAccessLayer.Concrete;
 using EasyCashIdentityProject.EntityLayer.Concrete;
+using EasyCashIdentityProject.PresentationLayer.Models;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<Context>();//Context elavesi
-builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>();//İdentity ve entityframework elavesi
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomeIdentityValidator>();//İdentity ve entityframework elavesi
 
 var app = builder.Build();
 
