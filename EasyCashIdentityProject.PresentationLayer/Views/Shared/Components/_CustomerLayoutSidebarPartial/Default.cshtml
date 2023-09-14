@@ -57,6 +57,16 @@
                         </ul>
                     </li>
                     <li>
+                        <a><i class="fa fa-car"></i> Pul Transferləri <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a asp-controller="SendMoney" asp-action="Index" asp-route-mycurrency="AZN">AZN Transfer</a></li>
+                            <li><a asp-controller="SendMoney" asp-action="Index" asp-route-mycurrency="USD">USD Transfer</a></li>
+                            <li><a asp-controller="SendMoney" asp-action="Index" asp-route-mycurrency="TL">TL Transfer</a></li>
+                            <li><a asp-controller="SendMoney" asp-action="Index" asp-route-mycurrency="EURO">EURO Transfer</a></li>
+                            <li><a asp-controller="SendMoney" asp-action="Index" asp-route-mycurrency="Digər">Digər</a></li>
+                        </ul>
+                    </li>
+                    <li>
                         <a><i class="fa fa-table"></i> Ödəmələr <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="tables.html">Komunal Ödəmə</a></li>

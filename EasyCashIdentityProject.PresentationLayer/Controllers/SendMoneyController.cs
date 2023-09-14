@@ -22,8 +22,9 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(string mycurrency)
         {
+            ViewBag.currency = mycurrency;
             return View();
         }
         [HttpPost]
@@ -32,24 +33,22 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
             var context = new Context();
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
             var receiverAccountNumberID = context.CustomerAccounts.Where(x => x.CustomerAccountNumber == sendMoneyForCustomerAccountProcessDto.ReceiverAccountNumber).Select(y => y.CustomerAccountID).FirstOrDefault();
-            var customusersenderID = context.CustomerAccounts.Where(x => x.AppUserID == user.Id).Select(y => y.CustomerAccountID).FirstOrDefault();
-            //sendMoneyForCustomerAccountProcessDto.SenderID = user.Id;
-            //sendMoneyForCustomerAccountProcessDto.ProcessDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-            //sendMoneyForCustomerAccountProcessDto.ProcessType = "Hediyye";
-            //sendMoneyForCustomerAccountProcessDto.ReceiverID = receiverAccountNumberID;
+            var customusersenderID = context.CustomerAccounts.Where(x => x.AppUserID == user.Id).Where(z=>z.CustomerAccountCurrency=="AZN").Select(y => y.CustomerAccountID).FirstOrDefault();
+
 
             var values = new CustomerAccountProcess();
             values.ProcessDate= Convert.ToDateTime(DateTime.Now.ToShortDateString());
-            //values.SenderID=user.Id;
             values.SenderID = customusersenderID;
             values.ProcessType = "Hediyye";
             values.ReceiverID = receiverAccountNumberID;
             values.Amount = sendMoneyForCustomerAccountProcessDto.Amount;
-
+            values.Description = sendMoneyForCustomerAccountProcessDto.Description;
             _customerAccountProcessService.TInsert(values);
 
 
             return RedirectToAction("Index", "Deneme");
         }
+        
+
     }
 }

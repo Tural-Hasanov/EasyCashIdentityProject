@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/CustomerLayout/Index.cshtml";
+}
+
+
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>@DateTime.Now.ToString("dd.mm.yyyy") - Valyuta</h3>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="">
+                <div class="x_content">
+                    <div class="row">
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="tile-stats">
+                                <div class="icon">
+                                    <i class="fa fa-caret-square-o-right"></i>
+                                </div>
+                                <div class="count">@ViewBag.USDtoAZN</div>
+
+                                <h3>USD - AZN</h3>
+                            </div>
+                        </div>
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="tile-stats">
+                                <div class="icon">
+                                    <i class="fa fa-sort-amount-desc"></i>
+                                </div>
+                                <div class="count">@ViewBag.EUROtoAZN</div>
+
+                                <h3>EUR - AZN</h3>
+                            </div>
+                        </div>
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="tile-stats">
+                                <div class="icon">
+                                    <i class="fa fa-check-square-o"></i>
+                                </div>
+                                <div class="count">@ViewBag.GBPtoAZN</div>
+
+                                <h3>GBP - AZN</h3>
+                            </div>
+                        </div>
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="tile-stats">
+                                <div class="icon">
+                                    <i class="fa fa-check-square-o"></i>
+                                </div>
+                                <div class="count">@ViewBag.USDtoEURO</div>
+
+                                <h3>USD - EUR</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
